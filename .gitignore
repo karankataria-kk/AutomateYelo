@@ -1,0 +1,15 @@
+/bin/
+# Object file
+*.o
+*.class
+*.project
+*.classpath
+*.lst
+*.settings
+target/*
+*.png
+*.jpg
+*.jpeg
+Ada Library Information
+*.ali
+*.log
