@@ -13,10 +13,10 @@ public class Log {
 	static String logFilePath = "src\\main\\java\\LogHandler\\log4j.xml";
 	public static Logger getLogger() {
 		if (logger==null)
-			initializeLog(Log.class,logFilePath);
+			initializeLog(Log.class , logFilePath);
 		return logger;
 	}
-	private static void initializeLog(Class logClass, String logFilePath) {
+	public static void initializeLog(Class logClass, String logFilePath) {
 		logger = Logger.getLogger(logClass);
 		DOMConfigurator.configure(logFilePath);
 	}    
