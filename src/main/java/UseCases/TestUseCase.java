@@ -1,7 +1,6 @@
 package UseCases;
 
 import PageObject.PageObject;
-import TestScript.TestLogin;
 import TestScript.TestSignUp;
 
 /*

@@ -27,7 +27,11 @@ public class Config {
 	}
 	public static String getProperty(String key) {
 		initialiseConfig();
-		return prop.getProperty(key);
+		if(prop.getProperty(key) != null)
+			return prop.getProperty(key);
+		else
+			Log.error("NULL value found for key " + key);
+		return null;
 	}
 	public static void setProperty(String key, String value) {
 		initialiseConfig();

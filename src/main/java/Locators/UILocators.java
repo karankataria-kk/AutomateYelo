@@ -8,10 +8,15 @@ public class UILocators {
 	}
 	public static final class SignUpPage{
 		public static final String nameInput_xpath = "//input[@placeholder='Enter Name']";
-		public static final String passwordInput_className = "form-group input-container input-img-email signup_via_otp";
-		public static final String emailInput_className = "form-group input-container input-img-password signup_via_otp";
-		public static final String contactNumberInput_className = "pl-0 focusable phone-new-field ng-untouched ng-pristine ng-invalid";
-		public static final String continueButton_className = "continue-btn-desktop mt-4 cursor-disabled";
+		public static final String emailInput_xpath = "//input[@placeholder='Enter Email']";
+		public static final String passwordInput_xpath = "//input[@placeholder='Enter Password']";
+		public static final String contactNumberInput_xpath = "//*[@id=\"companyPhone\"]/div/input";
+		public static final String continueButton_xpath = "//button[contains(text(),'Continue')]";
+		public static final String buisnessNameInput_xpath = "//input[@autocomplete='off']";
+		public static final String nextButton_xpath = "//button[contains(text(),'Next')]";
+		public static final String UILocatorBuisnessIdea_part1 = "//span[contains(normalize-space(),'";
+		public static final String UILocatorBuisnessIdea_part2 = "')]";
+		public static final String UILocatorBuisnessIdeaOthers_xpath = "//span[contains(normalize-space(),'Others')]";
 	}
 }
 
