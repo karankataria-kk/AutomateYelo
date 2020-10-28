@@ -16,7 +16,7 @@ public class Log {
 			initializeLog(Log.class , logFilePath);
 		return logger;
 	}
-	public static void initializeLog(Class logClass, String logFilePath) {
+	public static void initializeLog(Class<Log> logClass, String logFilePath) {
 		logger = Logger.getLogger(logClass);
 		DOMConfigurator.configure(logFilePath);
 	}    
