@@ -3,7 +3,7 @@ package TestScript;
 import Configuration.Config;
 import LogHandler.Log;
 import Scripts.Yelo.LoginPage;
-public class TestLogin {
+public class TestLogin extends LoginPage{
 	static String homePageURL = Config.getProperty("homepage.url");
 	static String userID = Config.getProperty("user.id");
 	static String password = Config.getProperty("password");

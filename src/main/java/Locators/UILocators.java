@@ -18,5 +18,8 @@ public class UILocators {
 		public static final String UILocatorBuisnessIdea_part2 = "')]";
 		public static final String UILocatorBuisnessIdeaOthers_xpath = "//span[contains(normalize-space(),'Others')]";
 	}
+	public static final class HomePage{
+		public static final String logOutButton_xpath = "";
+	}
 }
 
