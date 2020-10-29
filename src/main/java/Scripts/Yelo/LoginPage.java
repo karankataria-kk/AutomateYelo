@@ -1,17 +1,22 @@
 package Scripts.Yelo;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import Configuration.Config;
 import Locators.UILocators;
 import LogHandler.Log;
 import PageObject.PageObject;
+
 public class LoginPage extends PageObject{
+	static int retryCount = 0;
 	public static boolean launchHomePage(String homePageURL) {
 		if(driver.getCurrentUrl().contains(homePageURL))
 			return true;
+		else if(retryCount++ < 3) {
+			Log.error("Not able to launch home page ---- Retrying - (" + retryCount + "/3)");
+			driver.get(homePageURL);
+			launchHomePage(homePageURL);
+		}
+		Log.error("Not able to launch home page.Please check with connection and configurations");
 		return false;
 	}
 	public static void addCredentials(String userID, String password) {
