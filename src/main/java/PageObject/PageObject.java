@@ -1,6 +1,7 @@
 package PageObject;
 
 import Configuration.Config;
+import ExcelHandler.ExcelFileHandling;
 import LogHandler.Log;
 import WebDrivers.Drivers;
 
@@ -9,9 +10,12 @@ public class PageObject extends Drivers{
 	static String pageLoadingTime = Config.getProperty("page.load.time");
 	static String homePageURL = Config.getProperty("homepage.url");
 	protected static int pageLoadTime = Integer.parseInt(pageLoadingTime);
+	protected static String excelFilePath = Config.getProperty("excel.sheet.location");
+	protected static int sheetNumberIndex = 0;
 	public static void init() {
 		Log.initializeLog(Log.class, logFilePath);
 		Drivers.initialiseWebDriver();
+		ExcelFileHandling.excelIntegration(sheetNumberIndex);	
 		navigateToHomePage();
 	}
 	public static void navigateToHomePage() {
