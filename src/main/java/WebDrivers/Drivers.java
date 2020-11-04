@@ -16,7 +16,7 @@ public class Drivers extends ExcelFileHandling{
 	protected static WebDriver driver;
 	protected String browser;
 	protected String url = Config.getProperty("URL");
-
+	private static String chromeDriverPath =  "src\\main\\Resources\\Drivers\\chromedriver.exe";
 	protected boolean closeBrowser() {
 		driver.quit();
 		return true;
@@ -28,7 +28,7 @@ public class Drivers extends ExcelFileHandling{
 	protected static boolean initialiseWebDriver() {
 		if(Config.getProperty("webdriver").equalsIgnoreCase("chrome")) {
 			try {	
-				System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\Drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 				driver = new ChromeDriver();
 				Log.info("Setting Chrome driver");
 			}catch (Exception unableToIntialise) {
