@@ -19,7 +19,30 @@ public class UILocators {
 		public static final String UILocatorBuisnessIdeaOthers_xpath = "//span[contains(normalize-space(),'Others')]";
 	}
 	public static final class HomePage{
+		public static final String notificationBarLoginChck_xpath = "//div[@class='mobile']";
 		public static final String logOutButton_xpath = "";
+	}
+	public static final class LeftPane{
+		public static final String ordersButton_xpath = "//li[normalize-space()='Orders']";
+	}
+	public static final class OrdersPage{
+		public static final String createOrderButton_xpath = "//button[contains(text(),'Create Order')]";
+		public static final String addNewCustomerButton = "//i[@class='fa fa-plus-circle ng-tns-c30-20 ng-star-inserted']";
+		public static final String newCustomerName_xpath = "//input[@placeholder='Enter Name']";
+		public static final String newCustomerEmail_xpath = "//input[@placeholder='Enter Email']";
+		public static final String newCustomerPassword_xpath = "//input[@placeholder='Enter Password']";
+		public static final String newCustomerPhone_xpath = "//int-phone-prefix[@placeholder='Enter Phone No.']";
+		public static final String newCustomerAddButton_xpath = "//button[normalize-space()='Add']";
+		public static final String takeAwayDeliveryMethod_xpath = "//label[@for='delivery-method-2'";
+		public static final String homeDeliveryMethod_xpath = "//label[@for='delivery-method-1'";
+		public static final String pickAndDropDeliveryMethod_xpath = "//label[@for='delivery-method-3'";
+		public static final String selectMerchant_xpath = "//input[@placeholder='Merchant']";
+		public static final String enterProducts_xpath = "//p-autocomplete[@class='ng-tns-c30-20 ng-tns-c23-22 ng-valid ng-touched ng-dirty']";
+		public static final String addSuggestions_xpath = "//textarea[@placeholder='Any Suggestions?']";
+		public static final String invoiceButton_xpath = "//button[normalize-space()='Invoice']";
+		public static final String createOrderFinalButton_xpath = "button[class='btn btn-yl-primary']";
+		public static final String orderSucessfullPopUp_xpath = "//div[@class='ui-toast-message-text-content ng-tns-c5-27 ng-star-inserted']";
+		public static final String continueButtonAlreadyExists_xpath = "//button[normalize-space()='Continue']";
 	}
 }
 

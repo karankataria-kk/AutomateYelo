@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import Locators.UILocators;
 import LogHandler.Log;
 import PageObject.PageObject;
+import Synchronisation.Synchronise;
 
 public class LoginPage extends PageObject{
 	static int retryCount = 0;
@@ -40,12 +41,20 @@ public class LoginPage extends PageObject{
 		}
 	}
 	protected static boolean validateLogin() {
+		Synchronise.delay(pageLoadTime);
 		if(driver.getPageSource().contains("Please enter a valid input") || driver.getPageSource().contains("This field is required")) {
 			Log.error("Please Enter correct credentials in the CONFIG file");
 			return false;
+		}else {
+			try {
+				driver.findElement(By.xpath(UILocators.HomePage.notificationBarLoginChck_xpath));
+				Log.info("Login Successfull");
+				return true;
+			}catch(Exception ElementNotFound) {
+				Log.error("Unable to login  --  Please check with cresentials you entered in Config file");
+				return false;
+			}
 		}
-		Log.info("Login Successfull");
-		return true;
 	}
 	protected static boolean logOut() {
 		try {

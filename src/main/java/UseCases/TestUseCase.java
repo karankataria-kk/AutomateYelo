@@ -1,6 +1,7 @@
 package UseCases;
 
 import PageObject.PageObject;
+import TestScript.TestCreateOrder;
 import TestScript.TestLogin;
 import TestScript.TestSignUp;
 
@@ -11,7 +12,8 @@ import TestScript.TestSignUp;
 public class TestUseCase extends PageObject{
 	public static void main(String args[]) {
 		PageObject.init();
-		TestSignUp.signUp();
-		//TestLogin.login();
+		//TestSignUp.signUp();
+		TestLogin.login();
+		TestCreateOrder.creationOfOrder();
 	}
 }
