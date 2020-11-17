@@ -1,6 +1,8 @@
 package Scripts.Yelo;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.seleniumhq.jetty9.util.SocketAddressResolver.Sync;
 
 import Locators.UILocators;
 import LogHandler.Log;
@@ -18,6 +20,7 @@ public class CreateOrder extends PageObject{
 	}
 	protected static boolean createOrderProcess() {
 		try {
+			Synchronise.delay(pageLoadTime);
 			driver.findElement(By.xpath(UILocators.OrdersPage.createOrderButton_xpath)).click();
 			Log.info("Click on create order button");
 			return true;
@@ -26,44 +29,54 @@ public class CreateOrder extends PageObject{
 			return false;
 		}
 	}
-	protected static void addNewCustomer(String name, String email,String password, String phone) {
+	protected static void selectCustomer(String customerName) {
 		try {
-			driver.findElement(By.xpath(UILocators.OrdersPage.addNewCustomerButton)).click();
-			Log.info("Click on add new customer button");
 			Synchronise.delay(pageLoadTime);
-			enterNewCustomerDetails(name,email,password,phone);
-			Synchronise.delay(pageLoadTime);
-		}catch(Exception buttonNotFound) {
-			Log.error("Unable to add new customer  --  Please check with UI Locators");
-		}
-		customerAlreadyExists();
-	}
-	private static void customerAlreadyExists() {
-		Synchronise.delay(pageLoadTime);
-		try {
-			driver.findElement(By.xpath(UILocators.OrdersPage.continueButtonAlreadyExists_xpath)).click();
-			Log.error("Customer already found, moving forward with the same customer");
-		}catch(Exception customerNotFound){
-			Log.info("Registering new Customer");
+			driver.findElement(By.xpath(UILocators.OrdersPage.selectCustomer_xpath)).sendKeys(customerName , Keys.ARROW_DOWN , Keys.ENTER);
+			Log.info("Adding customer name - " + customerName);
+		}catch(Exception unableToAddCUstomer) {
+			Log.error("Unable to add customer");
 		}
 	}
-	private static void enterNewCustomerDetails(String name, String email,String password, String phone) {
-		try {
-			Log.info("Creating new user with name - ");
-			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerName_xpath)).sendKeys(name);
-			Log.info("Entering name - " + name);
-			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerEmail_xpath)).sendKeys(email);
-			Log.info("Entering email id - " + email);
-			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerPassword_xpath)).sendKeys(password);
-			Log.info("Entering passsword - **********");
-			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerPhone_xpath)).sendKeys(phone);
-			Log.info("Entering phone number - " + phone);
-			driver.findElement(By.xpath(UILocators.OrdersPage.addNewCustomerButton)).click();
-			Log.info("Click on Add Button");
-		}catch(Exception formNotAvailable) {
-			Log.error("Unable to add new customer");
-		}
-	}
+//	protected static void addNewCustomer(String name, String email,String password, String phone) {
+//		try {
+//			Synchronise.delay(pageLoadTime);
+//			driver.findElement(By.xpath(UILocators.OrdersPage.addNewCustomerButton_xpath)).click();
+//			Log.info("Click on add new customer button");
+//			Synchronise.delay(pageLoadTime);
+//			enterNewCustomerDetails(name,email,password,phone);
+//			Synchronise.delay(pageLoadTime);
+//		}catch(Exception buttonNotFound) {
+//			Log.error("Unable to add new customer  --  Please check with UI Locators");
+//		}
+//		customerAlreadyExists();
+//	}
+//	private static void customerAlreadyExists() {
+//		Synchronise.delay(pageLoadTime);
+//		try {
+//			driver.findElement(By.xpath(UILocators.OrdersPage.continueButtonAlreadyExists_xpath)).click();
+//			Log.error("Customer already found, moving forward with the same customer");
+//		}catch(Exception customerNotFound){
+//			Log.info("Registering new Customer");
+//		}
+//	}
+//	private static void enterNewCustomerDetails(String name, String email,String password, String phone) {
+//		try {
+//			Log.info("Creating new user with name - ");
+//			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerName_xpath)).sendKeys(name);
+//			Log.info("Entering name - " + name);
+//			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerEmail_xpath)).sendKeys(email);
+//			Log.info("Entering email id - " + email);
+//			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerPassword_xpath)).sendKeys(password);
+//			Log.info("Entering passsword - **********");
+//			driver.findElement(By.xpath(UILocators.OrdersPage.newCustomerPhone_xpath)).sendKeys(phone);
+//			Log.info("Entering phone number - " + phone);
+//			driver.findElement(By.xpath(UILocators.OrdersPage.addNewCustomerButton_xpath)).click();
+//			Log.info("Click on Add Button");
+//		}catch(Exception formNotAvailable) {
+//			Log.error("Unable to add new customer");
+//		}
+//	}
 	protected static void selectDeliveryMethod(String deliveryMethod) {
 		try {
 			if(deliveryMethod.equalsIgnoreCase("take away"))
