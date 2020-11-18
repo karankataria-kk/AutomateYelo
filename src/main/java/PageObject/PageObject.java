@@ -30,4 +30,7 @@ public class PageObject extends Drivers{
 			Log.info("Alert handling - No alert present");
 		}
 	}
+	public static void _init() {
+		driver.quit();
+	}
 }

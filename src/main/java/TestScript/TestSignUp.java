@@ -1,5 +1,6 @@
 package TestScript;
 
+import Common.CommonFunctions;
 import Configuration.Config;
 import Scripts.Yelo.SignUp;
 
@@ -11,6 +12,7 @@ public class TestSignUp extends SignUp{
 	static String buisnessName = Config.getProperty("signup.buisness.name");
 	static String buisnessIdea = Config.getProperty("signup.buisness.idea");
 	public static void signUp(){
+		CommonFunctions.printTestInfo("AY001 -- Sign Up");
 		SignUp.navigateToSignUpPage();
 		if(SignUp.enterDetails(name, emailId, password, contact))
 			if(SignUp.enterBuisenessName(buisnessName))

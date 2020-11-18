@@ -1,8 +1,6 @@
 package Scripts.Yelo;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.seleniumhq.jetty9.util.SocketAddressResolver.Sync;
 
 import Locators.UILocators;
 import LogHandler.Log;
@@ -30,13 +28,15 @@ public class CreateOrder extends PageObject{
 		}
 	}
 	protected static void selectCustomer(String customerName) {
-		try {
+//		try {
 			Synchronise.delay(pageLoadTime);
-			driver.findElement(By.xpath(UILocators.OrdersPage.selectCustomer_xpath)).sendKeys(customerName , Keys.ARROW_DOWN , Keys.ENTER);
+			driver.findElement(By.xpath(UILocators.OrdersPage.selectCustomer_xpath)).sendKeys(customerName);
+			Synchronise.delay(pageLoadTime/5);
+			driver.findElement(By.xpath(UILocators.OrdersPage.selectCustomerDropDown_xpath1 + customerName + UILocators.OrdersPage.selectCustomerDropDown_xpath2)).click();
 			Log.info("Adding customer name - " + customerName);
-		}catch(Exception unableToAddCUstomer) {
-			Log.error("Unable to add customer");
-		}
+//		}catch(Exception unableToAddCUstomer) {
+//			Log.error("Unable to add customer");
+//		}
 	}
 //	protected static void addNewCustomer(String name, String email,String password, String phone) {
 //		try {
@@ -79,6 +79,7 @@ public class CreateOrder extends PageObject{
 //	}
 	protected static void selectDeliveryMethod(String deliveryMethod) {
 		try {
+			Synchronise.delay(pageLoadTime/2);
 			if(deliveryMethod.equalsIgnoreCase("take away"))
 				driver.findElement(By.xpath(UILocators.OrdersPage.takeAwayDeliveryMethod_xpath)).click();
 			else if(deliveryMethod.equalsIgnoreCase("pick and drop"))
@@ -89,15 +90,17 @@ public class CreateOrder extends PageObject{
 			}
 			Log.info("Selecting delivery method as -" + deliveryMethod);
 		}catch(Exception unableToSetDeliveryMethod) {
-			Log.error("Unable to set delivery method");
+			Log.error("Unable to set delivery method,setting it to default delivery type!");
 		}
 	}
 	protected static void selectMerchant(String merchant) {
 		try {
 			driver.findElement(By.xpath(UILocators.OrdersPage.selectMerchant_xpath)).sendKeys(merchant);
 			Log.info("Entering merchant name - " + merchant);
+			Synchronise.delay(pageLoadTime/5);
+			driver.findElement(By.xpath(UILocators.OrdersPage.selectMerchantDropDown_xpath1 + merchant + UILocators.OrdersPage.selectMerchantDropDown_xpath2)).click();
 		}catch(Exception unableToAddMerchant) {
-			Log.error("Unable to add merchant");
+			Log.error("Unable to add merchant,");
 		}
 	}
 	protected static void enterProductName(String product) {
@@ -137,6 +140,7 @@ public class CreateOrder extends PageObject{
 	protected static boolean validateCreatedOrder() {
 		int findPopUpCount = 0;
 		if(driver.getPageSource().contains("This field is required.")) {
+			Log.error("Create Order Failed. Please check with administrator account for further queries");
 			return false;
 		}
 		while(findPopUpCount < 10) {
@@ -153,5 +157,19 @@ public class CreateOrder extends PageObject{
 			}
 		}
 		return false;
+	}
+	protected static void selectDeliveryOption(String deliveryOption) {
+		try {
+			Synchronise.delay(pageLoadTime/2);
+			if(deliveryOption.equalsIgnoreCase("ondemand")) {
+				driver.findElement(By.xpath(UILocators.OrdersPage.deliveryOptionOnDemand_xpath)).click();
+				Log.info("Selecting On Demand as a delivery option");
+			}else {
+				driver.findElement(By.xpath(UILocators.OrdersPage.deliveryOptionScheduled_xpath)).click();
+				Log.info("Selecting Scheduling as a delivery option");
+			}
+		}catch(Exception unableToSetDeliveryStatus) {
+			Log.error("Unable to set delivery status, kepping it to the default choice!");
+		}
 	}
 }

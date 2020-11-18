@@ -33,8 +33,8 @@ public class UILocators {
 	public static final class OrdersPage{
 		public static final String createOrderButton_xpath = "//button[contains(text(),'Create Order')]";
 		public static final String selectCustomer_xpath = "//input[@placeholder='Customer']";
-		public static final String selectCustomerDropDown_xpath1 = "//span[contains(normalize-space(),'";
-		public static final String selectCustomerDropDown_xpath2 = "')]//div";
+		public static final String selectCustomerDropDown_xpath1 = "//span[contains(text(),'";
+		public static final String selectCustomerDropDown_xpath2 = "')]";
 		public static final String customerNameList_xpath = "//ul[@role='listbox']";
 		public static final String addNewCustomerButton_xpath = "//div//i[@class='fa fa-plus-circle ng-tns-c32-35 ng-star-inserted']";
 		public static final String newCustomerName_xpath = "//input[@placeholder='Enter Name']";
@@ -42,10 +42,14 @@ public class UILocators {
 		public static final String newCustomerPassword_xpath = "//input[@placeholder='Enter Password']";
 		public static final String newCustomerPhone_xpath = "//int-phone-prefix[@placeholder='Enter Phone No.']";
 		public static final String newCustomerAddButton_xpath = "//button[normalize-space()='Add']";
-		public static final String takeAwayDeliveryMethod_xpath = "//label[@for='delivery-method-2'";
-		public static final String homeDeliveryMethod_xpath = "//label[@for='delivery-method-1'";
-		public static final String pickAndDropDeliveryMethod_xpath = "//label[@for='delivery-method-3'";
+		public static final String takeAwayDeliveryMethod_xpath = "//div[@class='row ng-tns-c18-2 ng-star-inserted']//div[1]//label[1]//div[1]//span[1]";
+		public static final String homeDeliveryMethod_xpath = "//div[@class='row ng-tns-c18-2 ng-star-inserted']//div[2]//label[1]//div[1]//span[1]";
+		public static final String pickAndDropDeliveryMethod_xpath = "//div[@class='row ng-tns-c18-2 ng-star-inserted']//div[3]//label[1]//div[1]//span[1]";
 		public static final String selectMerchant_xpath = "//input[@placeholder='Merchant']";
+		public static final String selectMerchantDropDown_xpath1 = "//span[contains(text(),'";
+		public static final String selectMerchantDropDown_xpath2 = "')]";
+		public static final String deliveryOptionOnDemand_xpath = "//div[@class='row']//div[1]//label[1]//div[1]//span[1]";
+		public static final String deliveryOptionScheduled_xpath = "//div[@class='row']//div[2]//label[1]//div[1]//span[1]";
 		public static final String enterProducts_xpath = "//p-autocomplete[@class='ng-tns-c30-20 ng-tns-c23-22 ng-valid ng-touched ng-dirty']";
 		public static final String addSuggestions_xpath = "//textarea[@placeholder='Any Suggestions?']";
 		public static final String invoiceButton_xpath = "//button[normalize-space()='Invoice']";
@@ -54,4 +58,3 @@ public class UILocators {
 		public static final String continueButtonAlreadyExists_xpath = "//button[normalize-space()='Continue']";
 	}
 }
-
