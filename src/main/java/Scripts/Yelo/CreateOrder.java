@@ -28,15 +28,15 @@ public class CreateOrder extends PageObject{
 		}
 	}
 	protected static void selectCustomer(String customerName) {
-//		try {
+		try {
 			Synchronise.delay(pageLoadTime);
 			driver.findElement(By.xpath(UILocators.OrdersPage.selectCustomer_xpath)).sendKeys(customerName);
 			Synchronise.delay(pageLoadTime/5);
 			driver.findElement(By.xpath(UILocators.OrdersPage.selectCustomerDropDown_xpath1 + customerName + UILocators.OrdersPage.selectCustomerDropDown_xpath2)).click();
 			Log.info("Adding customer name - " + customerName);
-//		}catch(Exception unableToAddCUstomer) {
-//			Log.error("Unable to add customer");
-//		}
+		}catch(Exception unableToAddCUstomer) {
+			Log.error("Unable to add customer");
+		}
 	}
 //	protected static void addNewCustomer(String name, String email,String password, String phone) {
 //		try {
@@ -79,16 +79,15 @@ public class CreateOrder extends PageObject{
 //	}
 	protected static void selectDeliveryMethod(String deliveryMethod) {
 		try {
-			Synchronise.delay(pageLoadTime/2);
 			if(deliveryMethod.equalsIgnoreCase("take away"))
-				driver.findElement(By.xpath(UILocators.OrdersPage.takeAwayDeliveryMethod_xpath)).click();
+				driver.findElement(By.id(UILocators.OrdersPage.takeAwayDeliveryMethod_id)).click();
 			else if(deliveryMethod.equalsIgnoreCase("pick and drop"))
-				driver.findElement(By.xpath(UILocators.OrdersPage.pickAndDropDeliveryMethod_xpath)).click();
+				driver.findElement(By.id(UILocators.OrdersPage.pickAndDropDeliveryMethod_id)).click();
 			else {
-				driver.findElement(By.xpath(UILocators.OrdersPage.homeDeliveryMethod_xpath)).click();
+				driver.findElement(By.id(UILocators.OrdersPage.homeDeliveryMethod_id)).click();
 				deliveryMethod = "Home Delivery";
 			}
-			Log.info("Selecting delivery method as -" + deliveryMethod);
+			Log.info("Selecting delivery method as - " + deliveryMethod);
 		}catch(Exception unableToSetDeliveryMethod) {
 			Log.error("Unable to set delivery method,setting it to default delivery type!");
 		}
@@ -100,16 +99,19 @@ public class CreateOrder extends PageObject{
 			Synchronise.delay(pageLoadTime/5);
 			driver.findElement(By.xpath(UILocators.OrdersPage.selectMerchantDropDown_xpath1 + merchant + UILocators.OrdersPage.selectMerchantDropDown_xpath2)).click();
 		}catch(Exception unableToAddMerchant) {
-			Log.error("Unable to add merchant,");
+			Log.error("Unable to add merchant");
 		}
 	}
 	protected static void enterProductName(String product) {
-		try {
+//		try {
+		Synchronise.delay(pageLoadTime/5);
 			driver.findElement(By.xpath(UILocators.OrdersPage.enterProducts_xpath)).sendKeys(product);
+			Synchronise.delay(pageLoadTime/5);
+			driver.findElement(By.xpath(UILocators.OrdersPage.selectProductDropDown_xpath1 + product + UILocators.OrdersPage.selectProductDropDown_xpath2)).click();
 			Log.info("Adding product - " + product + "to the list");
-		}catch(Exception ElementNotFound) {
-			Log.error("unable to add products");
-		}
+//		}catch(Exception ElementNotFound) {
+//			Log.error("unable to add products OR the mentioned product is not available");
+//		}
 	}
 	protected static void enterSuggestions(String suggestions) {
 		try {
@@ -129,11 +131,14 @@ public class CreateOrder extends PageObject{
 	}
 	protected static boolean createOrder() {
 		try {
+			Synchronise.delay(pageLoadTime);
 			driver.findElement(By.xpath(UILocators.OrdersPage.createOrderFinalButton_xpath)).click();
+			driver.findElement(By.xpath(UILocators.OrdersPage.createOrderFinalButton_xpath)).getText();
+			Log.info("The page says " + driver.findElement(By.xpath(UILocators.OrdersPage.createOrderFinalButton_xpath)).getText());
 			Log.info("Click on create order");
 			return true;
 		}catch(Exception ex) {
-			Log.error("Unable to create order");
+			Log.error("Unable to click on create order button");
 			return false;
 		}
 	}
@@ -143,13 +148,13 @@ public class CreateOrder extends PageObject{
 			Log.error("Create Order Failed. Please check with administrator account for further queries");
 			return false;
 		}
-		while(findPopUpCount < 10) {
+		while(findPopUpCount++ < 10) {
 			try {
-				driver.findElement(By.xpath(UILocators.OrdersPage.orderSucessfullPopUp_xpath));
+				driver.getPageSource().contains("Order Placed Successfully");
 				Log.info("Order successfull - Validated");
 				return true;
 			}catch(Exception popUpNotFound) {
-				Synchronise.delay(pageLoadTime/5);
+				Synchronise.delay(500);
 				if(findPopUpCount == 9) {
 					Log.error("Unable to see order succesfull validation pop-up");
 					return false;
@@ -160,12 +165,11 @@ public class CreateOrder extends PageObject{
 	}
 	protected static void selectDeliveryOption(String deliveryOption) {
 		try {
-			Synchronise.delay(pageLoadTime/2);
 			if(deliveryOption.equalsIgnoreCase("ondemand")) {
-				driver.findElement(By.xpath(UILocators.OrdersPage.deliveryOptionOnDemand_xpath)).click();
+				driver.findElement(By.id(UILocators.OrdersPage.deliveryOptionOnDemand_id)).click();
 				Log.info("Selecting On Demand as a delivery option");
 			}else {
-				driver.findElement(By.xpath(UILocators.OrdersPage.deliveryOptionScheduled_xpath)).click();
+				driver.findElement(By.id(UILocators.OrdersPage.deliveryOptionScheduled_id)).click();
 				Log.info("Selecting Scheduling as a delivery option");
 			}
 		}catch(Exception unableToSetDeliveryStatus) {

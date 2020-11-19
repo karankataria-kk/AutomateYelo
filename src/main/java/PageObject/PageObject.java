@@ -17,6 +17,7 @@ public class PageObject extends Drivers{
 		Drivers.initialiseWebDriver();
 		ExcelFileHandling.excelIntegration(sheetNumberIndex);	
 		navigateToHomePage();
+		driver.manage().window().maximize();
 	}
 	public static void navigateToHomePage() {
 		driver.get(homePageURL);

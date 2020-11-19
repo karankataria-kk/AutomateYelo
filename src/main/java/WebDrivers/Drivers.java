@@ -41,6 +41,7 @@ public class Drivers extends ExcelFileHandling{
 
 		}else
 			Log.error("Enter correct driver name and informtion in Configurations file");
+		driver.manage().window().maximize();
 		return false;
 	}
 }

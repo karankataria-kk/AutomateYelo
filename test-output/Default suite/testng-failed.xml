@@ -5,9 +5,10 @@
     <classes>
       <class name="UseCases.TestSuite1">
         <methods>
-          <include name="CreateOrder"/>
-          <include name="beforeTest"/>
-          <include name="afterSuite"/>
+          <include name="beforeMethod"/>
+          <include name="AcceptOrder"/>
+          <include name="LogIn"/>
+          <include name="afterMethod"/>
           <include name="beforeSuite"/>
         </methods>
       </class> <!-- UseCases.TestSuite1 -->

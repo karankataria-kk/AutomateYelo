@@ -1,5 +1,7 @@
 package Common;
 
+import org.apache.commons.exec.util.StringUtils;
+
 import LogHandler.Log;
 
 /*
@@ -17,5 +19,9 @@ public class CommonFunctions {
 	}
 	private static void printTestId(String testId) {
 		Log.info("<<" + testId + ">>");
+	}
+	public static void printSeparator() {
+		String separator = "************************************************************************";
+		Log.info(separator);
 	}
 }
