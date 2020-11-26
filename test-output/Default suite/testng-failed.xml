@@ -7,8 +7,11 @@
         <methods>
           <include name="beforeMethod"/>
           <include name="AcceptOrder"/>
+          <include name="SignUp"/>
+          <include name="CreateOrder"/>
           <include name="LogIn"/>
           <include name="afterMethod"/>
+          <include name="afterSuite"/>
           <include name="beforeSuite"/>
         </methods>
       </class> <!-- UseCases.TestSuite1 -->

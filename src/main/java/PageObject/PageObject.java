@@ -17,12 +17,11 @@ public class PageObject extends Drivers{
 		Drivers.initialiseWebDriver();
 		ExcelFileHandling.excelIntegration(sheetNumberIndex);	
 		navigateToHomePage();
-		driver.manage().window().maximize();
 	}
 	public static void navigateToHomePage() {
-		driver.get(homePageURL);
-		Log.info("Navigating to Home page --> " + homePageURL);
 		try {
+			driver.get(homePageURL);
+			Log.info("Navigating to Home page --> " + homePageURL);
 			Thread.sleep(PageObject.pageLoadTime);
 			Log.info("Encountered alert - " + driver.switchTo().alert().getText());
 			driver.switchTo().alert().dismiss();
